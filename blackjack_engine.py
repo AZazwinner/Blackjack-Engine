@@ -1,10 +1,7 @@
 # blackjack_pro_tracker.py
-# A professional-grade, configurable blackjack strategy advisor and bankroll tracker.
 # Supports rule variations like H17/S17, Surrender, and different deck counts.
 
-import time
-
-# --- CONFIGURABLE STRATEGY DATA ---
+# --- CONFIGURABLE DATA ---
 
 # Hi-Lo Card Counting Values
 HI_LO_VALUES = {
@@ -12,7 +9,7 @@ HI_LO_VALUES = {
     '10': -1, 'J': -1, 'Q': -1, 'K': -1, 'A': -1
 }
 
-# Master dictionary for all strategy tables. This allows dynamic selection based on game rules.
+# Master dictionary for all strategy tables.
 STRATEGY_TABLES = {
     # H17: Dealer Hits on Soft 17
     "H17": {
@@ -79,8 +76,6 @@ DEVIATIONS = {
     (15, 11): {'TC': -1, 'action': 'Sr'},
 }
 
-
-# --- HELPER CLASSES AND FUNCTIONS ---
 
 class GameRules:
     """A simple class to hold all the configurable rules for a blackjack game."""
@@ -154,8 +149,6 @@ class BlackjackEngine:
         return 'S' if player_total >= 17 else 'H'
 
 
-# --- INPUT VALIDATION ---
-
 def get_valid_input(prompt, validation_func, error_message):
     while True:
         user_input = input(prompt)
@@ -173,6 +166,7 @@ def validate_cards(cards_str):
 def validate_yn(yn_str):
     return yn_str.lower() in ['y', 'n']
 
+
 def validate_float(num_str):
     try:
         float(num_str)
@@ -180,11 +174,10 @@ def validate_float(num_str):
     except ValueError:
         return False
 
+
 def validate_pos_int(num_str):
     return num_str.isdigit() and int(num_str) > 0
 
-
-# --- MAIN GAME FLOW ---
 
 def get_game_rules():
     """Prompts the user to define the rules of the game."""
